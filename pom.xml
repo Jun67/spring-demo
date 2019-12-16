@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!--  spring-context: Spring上下文包，包含Spring核心的spring-core、spring-beans等jar包；
+                5.2.1.RELEASE: 当前Spring最新发布版本；-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
