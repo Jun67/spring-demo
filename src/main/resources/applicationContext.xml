@@ -9,11 +9,11 @@
         当我们使用Spring时，不再需要自己创建对象，而是将我们需要的对象类型，及对象属性告诉Spring，由Spring帮我们创建和管理。
         当我们使用对象时，直接从Spring容器获取即可。
     -->
-    <bean id="userDao" class="com.bailiban.day1.dao.impl.UserDaoImpl" />
-    <bean id="userService" class="com.bailiban.day1.service.impl.UserServiceImpl">
+    <bean id="userDao" class="com.bailiban.day1.helloworld.dao.impl.UserDaoImpl" />
+    <bean id="userService" class="com.bailiban.day1.helloworld.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao" />
     </bean>
-    <bean id="client" class="com.bailiban.day1.Client">
+    <bean id="client" class="com.bailiban.day1.helloworld.Client">
         <property name="userService" ref="userService" />
     </bean>
 </beans>

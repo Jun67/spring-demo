@@ -1,4 +1,4 @@
-package com.bailiban.day1.model;
+package com.bailiban.day1.helloworld.model;
 
 public class User {
 

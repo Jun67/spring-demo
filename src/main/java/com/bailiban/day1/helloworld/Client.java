@@ -1,7 +1,7 @@
-package com.bailiban.day1;
+package com.bailiban.day1.helloworld;
 
-import com.bailiban.day1.model.User;
-import com.bailiban.day1.service.UserService;
+import com.bailiban.day1.helloworld.model.User;
+import com.bailiban.day1.helloworld.service.UserService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Client {

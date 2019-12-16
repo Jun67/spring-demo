@@ -1,7 +1,7 @@
-package com.bailiban.day1.dao.impl;
+package com.bailiban.day1.helloworld.dao.impl;
 
-import com.bailiban.day1.dao.UserDao;
-import com.bailiban.day1.model.User;
+import com.bailiban.day1.helloworld.dao.UserDao;
+import com.bailiban.day1.helloworld.model.User;
 
 public class UserDaoImpl implements UserDao {
     @Override

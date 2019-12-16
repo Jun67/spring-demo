@@ -1,8 +1,8 @@
-package com.bailiban.day1.service.impl;
+package com.bailiban.day1.helloworld.service.impl;
 
-import com.bailiban.day1.dao.UserDao;
-import com.bailiban.day1.model.User;
-import com.bailiban.day1.service.UserService;
+import com.bailiban.day1.helloworld.dao.UserDao;
+import com.bailiban.day1.helloworld.model.User;
+import com.bailiban.day1.helloworld.service.UserService;
 
 public class UserServiceImpl implements UserService {
 
