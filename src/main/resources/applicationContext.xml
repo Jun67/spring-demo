@@ -11,7 +11,7 @@
     -->
     <bean id="userDao" class="com.bailiban.day1.helloworld.dao.impl.UserDaoImpl" />
     <bean id="userService" class="com.bailiban.day1.helloworld.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao" />
+        <constructor-arg name="userDao" ref="userDao" />
     </bean>
     <bean id="client" class="com.bailiban.day1.helloworld.Client">
         <property name="userService" ref="userService" />

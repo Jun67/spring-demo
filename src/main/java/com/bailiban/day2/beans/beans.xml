@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" name="user2 user3,user4;user5" class="com.bailiban.day1.helloworld.model.User" scope="prototype">
+        <property name="id" value="1001"/>
+        <property name="name"  value="Jim"/>
+    </bean>
+    <bean id="counter" class="com.bailiban.day2.beans.Counter" scope="prototype">
+        <property name="count"  value="0" />
+    </bean>
+    <bean id="counterTest1" class="com.bailiban.day2.beans.CounterTest1">
+        <property name="counter" ref="counter" />
+    </bean>
+    <bean id="counterTest2" class="com.bailiban.day2.beans.CounterTest2">
+        <property name="counter" ref="counter" />
+    </bean>
+
+    <bean id="testModel1" class="com.bailiban.day2.beans.TestModel">
+        <constructor-arg name="id" value="1001" />
+        <constructor-arg name="name" value="Jim" />
+        <constructor-arg name="user" ref="user" />
+    </bean>
+    <bean id="testModel2" class="com.bailiban.day2.beans.TestModel">
+        <constructor-arg index="0" value="1002" />
+        <constructor-arg index="1" value="Kitty" />
+        <constructor-arg index="2" ref="user" />
+    </bean>
+    <bean id="testModel3" class="com.bailiban.day2.beans.TestModel">
+        <constructor-arg type="int" value="1003" />
+        <constructor-arg type="java.lang.String" value="David" />
+        <constructor-arg type="com.bailiban.day1.helloworld.model.User" ref="user" />
+    </bean>
+
+    <bean id="counterTest3" class="com.bailiban.day2.beans.CounterTest2" autowire="byName" />
+
+</beans>
