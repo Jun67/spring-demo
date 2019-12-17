@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--beans标签： Spring IOC容器，包含Spring创建和管理的对象；-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean标签： 描述对象的类型和属性（用于创建）；
+        当我们使用Spring时，不再需要自己创建对象，而是将我们需要的对象类型，及对象属性告诉Spring，由Spring帮我们创建和管理。
+        当我们使用对象时，直接从Spring容器获取即可。
+    -->
+    <bean id="userDao" class="com.bailiban.day1.helloworld.dao.impl.UserDaoImpl" />
+    <bean id="userService" class="com.bailiban.day1.helloworld.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao" />
+    </bean>
+    <bean id="client" class="com.bailiban.day1.mydi.fielddemo.Client">
+        <property name="userService" ref="userService" />
+    </bean>
+</beans>
