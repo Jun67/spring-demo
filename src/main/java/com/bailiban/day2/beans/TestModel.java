@@ -4,6 +4,7 @@ import com.bailiban.day1.helloworld.model.User;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ public class TestModel {
     private String name;
     private User user;
     private Long[] priceArray;
+    private List<Integer> idList;
     private Set<String> descSet;
     private Map<String, String> myMap;
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
@@ -36,4 +37,37 @@
 
     <bean id="counterTest3" class="com.bailiban.day2.beans.CounterTest2" autowire="byName" />
 
+    <bean id="testModel4" class="com.bailiban.day2.beans.TestModel">
+        <property name="id" value="1001" />
+        <property name="name"   value="Jim" />
+        <property name="user"   ref="user" />
+        <property name="priceArray">
+            <array>
+                <value>100</value>
+                <value>110</value>
+                <value>120</value>
+            </array>
+        </property>
+        <property name="idList">
+            <list>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+        <property name="descSet">
+            <set>
+                <value>description111</value>
+                <value>description222</value>
+            </set>
+        </property>
+        <property name="myMap">
+            <map>
+                <entry key="a1" value="v1" />
+                <entry key="a2" value="v2"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="user10" class="com.bailiban.day1.helloworld.model.User" p:id="1001" p:name="Jim" />
 </beans>

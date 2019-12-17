@@ -1,5 +1,6 @@
 package com.bailiban.day2.beans;
 
+import com.bailiban.day1.helloworld.model.User;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
@@ -63,12 +64,24 @@ public class Client {
         counterTest.count();
     }
 
+    static void collectionTest() {
+        TestModel testModel = (TestModel) context.getBean("testModel4");
+        System.out.println(testModel);
+    }
+
+    static void pTest() {
+        User user = (User) context.getBean("user10");
+        System.out.println(user);
+    }
+
     public static void main(String[] args) {
 //        nameTest();
 //        scopeTest();
 //        constructorByNameTest();
 //        constructorByIndexTest();
 //        constructorByTypeTest();
-        autowireTest();
+//        autowireTest();
+//        collectionTest();
+        pTest();
     }
 }
