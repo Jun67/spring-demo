@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- class： 静态工厂方法类
+     factory-method：用于生产指定对象的静态工厂方法
+    -->
+    <bean id="user" class="com.bailiban.day2.factory.staticfactory.StaticFactory" factory-method="getUser" />
+    <bean id="userDao" class="com.bailiban.day2.factory.staticfactory.StaticFactory" factory-method="getUserDao" />
+</beans>

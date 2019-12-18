@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="instanceFactory" class="com.bailiban.day2.factory.instancefactory.InstanceFactory" />
+    <!-- factory-bean： 实例工厂方法类
+         factory-method：用于生产指定对象的工厂方法
+    -->
+    <bean id="user" factory-bean="instanceFactory" factory-method="getUser" />
+    <bean id="userDao" factory-bean="instanceFactory" factory-method="getUserDao" />
+</beans>
