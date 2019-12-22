@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--被代理bean-->
+    <bean id="userService" class="com.bailiban.day4.aop.dynamic_proxy.noproxy.UserServiceImpl" />
+
+    <!--  代理通知bean  -->
+    <bean id="logAdvice" class="com.bailiban.day4.aop.spring12.LogAdvice" />
+
+    <!--  代理工厂bean  -->
+    <bean id="userServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+<!--        被代理接口-->
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.bailiban.day4.aop.dynamic_proxy.noproxy.UserService</value>
+            </list>
+        </property>
+<!--        被代理bean-->
+        <property name="target" ref="userService"/>
+<!--        通知-->
+        <property name="interceptorNames">
+            <list>
+                <value>logAdvice</value>
+            </list>
+        </property>
+    </bean>
+</beans>

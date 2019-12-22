@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--被代理bean-->
+    <bean id="userService" class="com.bailiban.day4.aop.dynamic_proxy.noproxy.UserServiceImpl" />
+
+    <!--  代理通知bean  -->
+    <bean id="logAdvice" class="com.bailiban.day4.aop.aopxml.LogAdvice" />
+<!--    环绕切口-->
+    <bean id="aroundAdvice" class="com.bailiban.day4.aop.aopxml.AroundAdvice" />
+
+    <aop:config>
+<!--        给UserServiceImpl的所有方法添加log信息-->
+        <aop:aspect ref="logAdvice">
+            <aop:pointcut id="log" expression="execution(* com..noproxy.UserServiceImpl.*(..))"/>
+            <aop:after method="logger" pointcut-ref="log" />
+        </aop:aspect>
+        <aop:aspect ref="aroundAdvice">
+            <aop:pointcut id="arround" expression="execution(* com..noproxy.UserServiceImpl.*(..))"/>
+            <aop:around method="around" pointcut-ref="arround" />
+        </aop:aspect>
+    </aop:config>
+
+</beans>
