@@ -3,26 +3,30 @@ package com.bailiban.day4.aop.dynamic_proxy.noproxy;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UserDaoImpl2 {
+public class UserServiceImpl2 implements UserService {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    void getUser() {
+    @Override
+    public void getUser() {
         System.out.println("getUser");
         System.out.println(dateFormat.format(new Date()).toString() +  " Log: method getUser invoked.");
     }
 
-    void createUser() {
+    @Override
+    public void createUser() {
         System.out.println("createUser");
         System.out.println(dateFormat.format(new Date()).toString() +  " Log: method createUser invoked.");
     }
 
-    void updateUser() {
+    @Override
+    public void updateUser() {
         System.out.println("updateUser");
         System.out.println(dateFormat.format(new Date()).toString() +  " Log: method updateUser invoked.");
     }
 
-    void deleteUser() {
+    @Override
+    public void deleteUser() {
         System.out.println("deleteUser");
         System.out.println(dateFormat.format(new Date()).toString() +  " Log: method deleteUser invoked.");
     }

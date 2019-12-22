@@ -1,6 +1,6 @@
 package com.bailiban.day4.aop.dynamic_proxy.noproxy;
 
-public interface UserDao {
+public interface UserService {
 
     void getUser();
     void createUser();

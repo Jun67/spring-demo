@@ -1,6 +1,6 @@
 package com.bailiban.day4.aop.dynamic_proxy.noproxy;
 
-public class UserDaoImpl implements UserDao{
+public class UserServiceImpl implements UserService {
 
     @Override
     public void getUser() {
