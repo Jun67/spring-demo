@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--被代理bean-->
+    <bean id="userService" class="com.bailiban.day4.aop.dynamic_proxy.noproxy.UserServiceImpl" />
+
+    <!--  代理通知bean  -->
+    <bean id="logAdvice" class="com.bailiban.day4.aop.spring12.advice.LogAdvice" />
+
+    <bean id="logAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="logAdvice" />
+        <property name="mappedNames" value="getUser, createUser" />
+    </bean>
+
+    <!--  代理工厂bean  -->
+    <bean id="userServiceProxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+<!--        被代理bean，这里是会匹配所有name以Service结尾的bean-->
+        <property name="beanNames" value="*Service" />
+<!--        通知-->
+        <property name="interceptorNames">
+            <list>
+                <value>logAdvisor</value>
+            </list>
+        </property>
+    </bean>
+</beans>

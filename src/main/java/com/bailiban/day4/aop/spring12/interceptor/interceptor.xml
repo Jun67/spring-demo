@@ -7,8 +7,8 @@
     <!--被代理bean-->
     <bean id="userService" class="com.bailiban.day4.aop.dynamic_proxy.noproxy.UserServiceImpl" />
 
-    <!--  代理通知bean  -->
-    <bean id="logAdvice" class="com.bailiban.day4.aop.spring12.LogAdvice" />
+    <!--  拦截器bean  -->
+    <bean id="logInterceptor" class="com.bailiban.day4.aop.spring12.interceptor.LogInterceptor" />
 
     <!--  代理工厂bean  -->
     <bean id="userServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
@@ -23,7 +23,7 @@
 <!--        通知-->
         <property name="interceptorNames">
             <list>
-                <value>logAdvice</value>
+                <value>logInterceptor</value>
             </list>
         </property>
     </bean>
