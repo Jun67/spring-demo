@@ -8,9 +8,9 @@
     <bean id="userService" class="com.bailiban.day4.aop.dynamic_proxy.noproxy.UserServiceImpl" />
 
     <!--  代理通知bean  -->
-    <bean id="logAdvice" class="com.bailiban.day4.aop.aopxml.LogAdvice" />
+    <bean id="logAdvice" class="com.bailiban.day4.aop.aopxml.simple.LogAdvice" />
 <!--    环绕切口-->
-    <bean id="aroundAdvice" class="com.bailiban.day4.aop.aopxml.AroundAdvice" />
+    <bean id="aroundAdvice" class="com.bailiban.day4.aop.aopxml.simple.AroundAdvice" />
 
     <aop:config>
 <!--        给UserServiceImpl的所有方法添加log信息-->

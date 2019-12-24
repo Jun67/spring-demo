@@ -1,4 +1,4 @@
-package com.bailiban.day4.aop.aopxml;
+package com.bailiban.day4.aop.aopxml.simple;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 

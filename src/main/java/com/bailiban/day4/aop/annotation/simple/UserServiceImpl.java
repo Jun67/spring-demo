@@ -1,4 +1,4 @@
-package com.bailiban.day4.aop.annotation;
+package com.bailiban.day4.aop.annotation.simple;
 
 import com.bailiban.day4.aop.dynamic_proxy.noproxy.UserService;
 import org.springframework.stereotype.Service;
