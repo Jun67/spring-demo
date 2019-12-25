@@ -21,33 +21,25 @@ public class JdbcUtil {
         }
     }
 
-    public void transaction_begin() {
-        try {
-            System.out.println("begin");
-            connection.setAutoCommit(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    // 开始事务，用于 before advice
+    public void transaction_begin() throws SQLException {
+        System.out.println("begin");
+        connection.setAutoCommit(false);
     }
 
-    public void transaction_commit() {
-        try {
-            System.out.println("commit");
-            connection.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    // 提交事务，用于 after-returning advice
+    public void transaction_commit() throws SQLException {
+        System.out.println("commit");
+        connection.commit();
     }
 
-    public void transaction_rollback() {
-        try {
-            System.out.println("rollback");
-            connection.rollback();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    // 回滚事务，用于 after-throwing advice
+    public void transaction_rollback() throws SQLException {
+        System.out.println("rollback");
+        connection.rollback();
     }
 
+    // 回收资源，此处并没有关闭连接，对应于 after advice
     public void transaction_release() {
         System.out.println("release");
     }

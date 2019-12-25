@@ -18,6 +18,7 @@ public class AccountService {
         Account toAccount = accountDao.findById(toId);
         fromAccount.setMoney(fromAccount.getMoney() - money);
         accountDao.update(fromAccount);
+//        此处可以手动抛出一个异常，此时钱被转走，但接收者并不会收到。
 //        if (true)
 //            throw new RuntimeException();
         toAccount.setMoney(toAccount.getMoney() + money);

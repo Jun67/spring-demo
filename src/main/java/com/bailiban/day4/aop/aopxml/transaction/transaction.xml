@@ -8,14 +8,22 @@
     <bean id="accountService" class="com.bailiban.day4.aop.aopxml.transaction.AccountService">
         <property name="accountDao" ref="accountDao" />
     </bean>
+
+<!--    事务处理相关方法-->
     <bean id="jdbcUtil" class="com.bailiban.day4.aop.aopxml.transaction.JdbcUtil" />
 
+<!--    事务AOP配置-->
     <aop:config>
         <aop:aspect ref="jdbcUtil">
+<!--            拦截transfer方法-->
             <aop:pointcut id="pc1" expression="execution(* com..transaction.*.transfer(..))"/>
+<!--            transfer运行前，开启事务-->
             <aop:before method="transaction_begin" pointcut-ref="pc1" />
+<!--            transfer运行结束后，提交事务-->
             <aop:after-returning method="transaction_commit" pointcut-ref="pc1" />
+<!--            异常回滚-->
             <aop:after-throwing method="transaction_rollback" pointcut-ref="pc1" />
+<!--            即使出现异常，after方法也会执行，模拟连接资源回收-->
             <aop:after method="transaction_release" pointcut-ref="pc1" />
         </aop:aspect>
     </aop:config>
