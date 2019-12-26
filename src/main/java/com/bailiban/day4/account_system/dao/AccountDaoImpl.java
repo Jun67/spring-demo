@@ -4,11 +4,8 @@ import com.bailiban.day4.account_system.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -51,27 +48,13 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     /**
-     * account表字段和Account类映射关系类
-     */
-    static class AccountRowMapping implements RowMapper<Account> {
-        @Override
-        public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
-            int id = rs.getInt(1);
-            String name = rs.getString(2);
-            double money = rs.getDouble(3);
-            String role = rs.getString(4);
-            return new Account(id, name, "", money, role);
-        }
-    }
-
-    /**
      * 根据id查找用户
      */
     @Override
     public Account findById(int id) {
         try {
             return jdbcTemplate.queryForObject("select id, name, money, role from account where id = ?",
-                    new AccountDaoImpl.AccountRowMapping(), id);
+                    new AccountRowMapping(), id);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -84,7 +67,7 @@ public class AccountDaoImpl implements AccountDao {
     public Account findByName(String name) {
         try {
             return jdbcTemplate.queryForObject("select id, name, money, role from account where name = ?",
-                    new AccountDaoImpl.AccountRowMapping(), name);
+                    new AccountRowMapping(), name);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -97,7 +80,7 @@ public class AccountDaoImpl implements AccountDao {
     public Account accountLogin(String name, String password) {
         try {
             return jdbcTemplate.queryForObject("select id, name, money, role from account where name = ? and password = ?",
-                    new AccountDaoImpl.AccountRowMapping(), name, password);
+                    new AccountRowMapping(), name, password);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -110,7 +93,7 @@ public class AccountDaoImpl implements AccountDao {
     public List<Account> findAll() {
         try {
             return jdbcTemplate.query("select id, name, money, role from account",
-                    new AccountDaoImpl.AccountRowMapping());
+                    new AccountRowMapping());
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

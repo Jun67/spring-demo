@@ -10,7 +10,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
 
 @Configuration
 @EnableTransactionManagement
@@ -20,8 +19,8 @@ public class TransConfig {
     @Bean("dataSource")
     public DataSource createDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/test");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         return dataSource;
