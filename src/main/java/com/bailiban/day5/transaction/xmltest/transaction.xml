@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="bookShopDao" class="com.bailiban.day5.transaction.annotation.BookShopDaoImpl" />
+    <bean id="bookShopService" class="com.bailiban.day5.transaction.annotation.BookShopServiceImpl" autowire="byName"/>
+
+    <!-- 数据源  -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai" />
+    </bean>
+
+    <!-- 事务管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--创建jdbcTemplate对象-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <!--把dataSource传递到模板里面-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 事务的配置 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 指定方法名称：是业务核心方法
+            read-only：是否是只读事务。默认 false，不只读。
+            isolation：指定事务的隔离级别。默认值是使用数据库的默认隔离级别。
+            propagation：指定事务的传播行为。
+            timeout：指定超时时间。默认值为：-1。永不超时。
+            rollback-for：用于指定一个异常，当执行产生该异常时，事务回滚。产生其他异常，事务不回滚。
+            没有默认值，任何异常都回滚。
+            no-rollback-for：用于指定一个异常，当产生该异常时，事务不回滚，产生其他异常时，事务回
+            滚。没有默认值，任何异常都回滚。
+            -->
+            <tx:method name="purchase" read-only="false" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 配置 aop -->
+    <aop:config>
+        <!-- 配置切入点表达式 -->
+        <aop:pointcut expression="execution(* com.bailiban.day5.transaction.annotation.*Service*.*(..))" id="pt1"/>
+        <!-- 建立事务的通知和切入点表达式的关系 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"/>
+    </aop:config>
+
+</beans>
