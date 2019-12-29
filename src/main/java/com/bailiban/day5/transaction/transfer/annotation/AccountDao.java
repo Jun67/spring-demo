@@ -17,6 +17,10 @@ public class AccountDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
+
     public void update(Account account) throws NotEnoughMoneyException {
         if (account.getMoney() < 0) {
             throw new NotEnoughMoneyException("余额不足！");

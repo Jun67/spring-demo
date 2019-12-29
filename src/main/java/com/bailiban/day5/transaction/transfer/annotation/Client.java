@@ -8,6 +8,7 @@ public class Client {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         AccountService accountService = (AccountService) context.getBean("accountService");
-        accountService.transfer(12, 10, 10000000);
+        accountService.transfer(10, 12, 10);
+//        accountService.get(12);
     }
 }
